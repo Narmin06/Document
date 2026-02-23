@@ -9,6 +9,7 @@ C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.AssemblyInfoInputs.cache
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.AssemblyInfo.cs
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.sourcelink.json
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\Acceptan.DF295D8A.Up2Date
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.dll
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\refint\AcceptanceDocuments.Dal.dll

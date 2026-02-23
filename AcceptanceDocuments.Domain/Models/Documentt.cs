@@ -16,7 +16,7 @@ public class Documentt : AuditableEntity, ISoftDeletable
 
 
     public Guid DocumentTypeId { get; set; }
-    public string DocumentTypeName { get; set; } = string.Empty; //Elave eledim
+    public string DocumentTypeName { get; set; } = string.Empty; 
     public DocumentType DocumentType { get; set; } = null!;
 
     public ICollection<DocumentFieldValue> FieldValues { get; set; } = new List<DocumentFieldValue>();

@@ -3,7 +3,6 @@
 public class DocumentFieldValueResponseDTO
 {
     public string Value { get; set; }  = null!;
-    public Guid DocumentFieldValueId { get; set; }
-    public Guid DocumentId { get; set; }  
+    public string FieldDefinitionName { get; set; } = null!;
     public Guid DocumentFieldDefinitionId { get; set; } 
 }

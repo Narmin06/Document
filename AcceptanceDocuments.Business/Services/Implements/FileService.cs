@@ -5,7 +5,8 @@ namespace AcceptanceDocuments.Business.Services.Implements;
 
 public class FileService(IWebHostEnvironment environment) : IFileService
 {
-    private readonly string _uploadFolder = Path.Combine(environment.WebRootPath, "uploads", "documents");
+
+    private readonly string _uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "documents");
 
     private const long MaxFileSize = 10 * 1024 * 1024;   // 10Mb saxlayir (istəsək 5MB)
     private static readonly string[] AllowedExtensions = [".pdf"];

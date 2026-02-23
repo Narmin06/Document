@@ -10,7 +10,7 @@ namespace AcceptanceDocuments.Business.DTOs.DocumentDTO
         public DateTime DocumentDate { get; set; }
         public string? Note { get; set; }
         public required IFormFile File { get; set; }
-        public string? FileValueJson { get; set; }
-        public IEnumerable<DocumentFieldValueCreateRequestDTO>? FileValue { get; set; }
+        public string? FieldValueJson { get; set; }
+        public IEnumerable<DocumentFieldValueCreateRequestDTO>? FieldValues { get; set; }
     }
 }

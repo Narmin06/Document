@@ -2,7 +2,6 @@
 
 public class DocumentFieldValueCreateRequestDTO
 {
-    public string Value { get; set; }  
-    public Guid DocumentId { get; set; }  
+    public string Value { get; set; }  = string.Empty;
     public Guid DocumentFieldDefinitionId { get; set; }  
 }

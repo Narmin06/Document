@@ -7,7 +7,7 @@ public class DocumentFieldValue : AuditableEntity, ISoftDeletable
     public string Value { get; set; } = null!;
 
     public Guid DocumentId { get; set; }
-    public Document Document { get; set; }
+    public Documentt Document { get; set; } = null!;
 
     public Guid DocumentFieldDefinitionId { get; set; }
     public DocumentFieldDefinition DocumentFieldDefinition { get; set; } = null!;

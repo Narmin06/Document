@@ -9,21 +9,21 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
-);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IRepository<Documentt>, Repository<Documentt>>();
-builder.Services.AddScoped<IRepository<DocumentType>, Repository<DocumentType>>();
-builder.Services.AddScoped<IRepository<DocumentFieldDefinition>, Repository<DocumentFieldDefinition>>();
-builder.Services.AddScoped<IRepository<DocumentFieldValue>, Repository<DocumentFieldValue>>();
-builder.Services.AddScoped<IRepository<DocumentTypeFieldDefinition>, Repository<DocumentTypeFieldDefinition>>();
+
+builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
+builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+builder.Services.AddScoped<IDocumentFieldDefinitionRepository, DocumentFieldDefinitionRepository>();
+builder.Services.AddScoped<IDocumentFieldValueRepository, DocumentFieldValueRepository>();
+builder.Services.AddScoped<IDocumentTypeFieldDefinitionRepository, DocumentTypeFieldDefinitionRepository>();
 
 
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IDocumentService, DocumentService>();
 builder.Services.AddScoped<IDocumentTypeService, DocumentTypeService>();
-builder.Services.AddScoped<IDocumentFieldValueService, DocumentFieldValueService>();
 builder.Services.AddScoped<IDocumentFieldDefinitionService, DocumentFieldDefinitionService>();
 
 builder.Services.AddControllers();

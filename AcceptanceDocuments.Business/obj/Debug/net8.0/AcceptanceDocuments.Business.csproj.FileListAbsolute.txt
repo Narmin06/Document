@@ -10,6 +10,7 @@ C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Business\obj\Debug
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Business\obj\Debug\net8.0\AcceptanceDocuments.Business.AssemblyInfoInputs.cache
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Business\obj\Debug\net8.0\AcceptanceDocuments.Business.AssemblyInfo.cs
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Business\obj\Debug\net8.0\AcceptanceDocuments.Business.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Business\obj\Debug\net8.0\AcceptanceDocuments.Business.sourcelink.json
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Business\obj\Debug\net8.0\Acceptan.5C27CEBF.Up2Date
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Business\obj\Debug\net8.0\AcceptanceDocuments.Business.dll
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Business\obj\Debug\net8.0\refint\AcceptanceDocuments.Business.dll

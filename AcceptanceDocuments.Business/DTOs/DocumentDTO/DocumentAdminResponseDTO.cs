@@ -1,4 +1,5 @@
 ﻿using AcceptanceDocuments.Business.DTOs.Common;
+using AcceptanceDocuments.Business.DTOs.DocumentFieldValueDTO;
 
 namespace AcceptanceDocuments.Business.DTOs.DocumentDTO;
 
@@ -11,5 +12,7 @@ public class DocumentAdminResponseDTO:AuditableEntityDto,ISoftDeletableDto
     public string Note { get; set; } = string.Empty;
     public string FileUrl { get; set; } = string.Empty;
     public bool IsDeleted { get; set; }
-    public DateTime? DeleteTime { get; set; }
+    public DateTime? DeleteTime { get; set; }  
+
+    public IEnumerable<DocumentFieldValueResponseDTO> FieldValues { get; set; } = new List<DocumentFieldValueResponseDTO>();
 }
