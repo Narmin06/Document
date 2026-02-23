@@ -1,0 +1,6 @@
+@AcceptanceDocuments.WebApi_HostAddress = http://localhost:5000
+
+GET {{AcceptanceDocuments.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

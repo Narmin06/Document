@@ -1,0 +1,17 @@
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\bin\Debug\net8.0\AcceptanceDocuments.Dal.deps.json
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\bin\Debug\net8.0\AcceptanceDocuments.Dal.runtimeconfig.json
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\bin\Debug\net8.0\AcceptanceDocuments.Dal.dll
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\bin\Debug\net8.0\AcceptanceDocuments.Dal.pdb
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\bin\Debug\net8.0\AcceptanceDocuments.Domain.dll
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\bin\Debug\net8.0\AcceptanceDocuments.Domain.pdb
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.AssemblyInfoInputs.cache
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.AssemblyInfo.cs
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\Acceptan.DF295D8A.Up2Date
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.dll
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\refint\AcceptanceDocuments.Dal.dll
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.pdb
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\AcceptanceDocuments.Dal.genruntimeconfig.cache
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.Dal\obj\Debug\net8.0\ref\AcceptanceDocuments.Dal.dll

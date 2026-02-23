@@ -1,0 +1,251 @@
+﻿using AcceptanceDocuments.Business.DTOs;
+using AcceptanceDocuments.Business.DTOs.DocumentDTO;
+using AcceptanceDocuments.Business.Services.Interfaces;
+using AcceptanceDocuments.Dal.Data;
+using AcceptanceDocuments.Dal.Repositories.Interfaces;
+using AcceptanceDocuments.Domain.Models;
+namespace AcceptanceDocuments.Business.Services.Implements;
+
+public class DocumentService : IDocumentService
+{
+    private readonly IDocumentRepository _documentRepository;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IFileService _fileService;
+
+    public DocumentService(IDocumentRepository documentRepository, IUnitOfWork unitOfWork)
+    {
+        _documentRepository = documentRepository;
+        _unitOfWork = unitOfWork;
+    }
+
+    public async Task CreateAsync(DocumentCreateRequestDTO documentDto, CancellationToken cancellationToken = default)
+    {
+        if (documentDto is null)
+            throw new ArgumentNullException(nameof(documentDto));
+
+        var filePath = await _fileService.UploadFileAsync(documentDto.File, cancellationToken);
+
+        var documentType = await _documentRepository.GetByIdAsync(documentDto.DocumentTypeId);
+        if (documentType is null)
+            throw new KeyNotFoundException($"DocumentType with id {documentDto.DocumentTypeId} not found.");
+
+        var document = new Documentt
+        {
+            DocumentCode = Guid.NewGuid().ToString(),
+            DocumentNumber = documentDto.DocumentNumber,
+            DocumentTypeId = documentDto.DocumentTypeId, 
+            DocumentDate = documentDto.DocumentDate,
+            CreateTime = DateTime.UtcNow,
+            Note = documentDto.Note,
+            FilePathUrl = filePath  
+        };
+
+        _documentRepository.Create(document);
+
+        if (documentDto.FileValue != null)
+        {
+            foreach (var fileValue in documentDto.FileValue)
+            {
+                var documentFieldValue = new DocumentFieldValue
+                {
+                    Value = fileValue.Value,
+                    DocumentId = document.Id,   
+                    DocumentFieldDefinitionId = fileValue.DocumentFieldDefinitionId
+                };
+
+                _documentRepository.AddFieldValue(documentFieldValue);
+            }
+        }
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var document = await _documentRepository.GetByIdAsync(id);
+
+        if(document is null)
+            throw new KeyNotFoundException($"Document with id {id} not found."); 
+
+        _documentRepository.Delete(document);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<PagedResult<DocumentAdminResponseDTO>> GetAllAsync(DocumentQueryDTO dto, CancellationToken cancellationToken = default)
+    {
+        IQueryable<Documentt> query = _documentRepository.GetAll();
+
+        if ( dto is null) 
+            throw new ArgumentNullException(nameof(dto));
+
+
+        if (dto.CreatedFrom.HasValue)
+            query = query.Where(x => x.CreateTime >= dto.CreatedFrom.Value);
+
+        if (dto.CreatedTo.HasValue)
+            query = query.Where(x => x.CreateTime <= dto.CreatedTo.Value);
+
+        if (!string.IsNullOrEmpty(dto.Search))
+            query = query.Where(x => x.DocumentNumber.Contains(dto.Search));
+
+        if (dto.CreatedFrom.HasValue)
+            query = query.Where(x => x.CreateTime >= dto.CreatedFrom.Value);
+
+        if (dto.CreatedTo.HasValue)
+            query = query.Where(x => x.CreateTime <= dto.CreatedTo.Value);
+
+        int pageNumber = dto.PageNumber <= 0 ? 1 : dto.PageNumber;
+        int pageSize = dto.PageSize <= 0 ? 10 : dto.PageSize;
+
+        var pagedResult = await query.ToPagedResultAsync(pageNumber, pageSize, cancellationToken);
+
+        var dtoItems = pagedResult.Items.Select(document => new DocumentAdminResponseDTO
+        {
+            Id = document.Id,
+            DocumentCode = document.DocumentCode,
+            DocumentNumber = document.DocumentNumber,
+            DocumentTypeName = document.DocumentTypeName,
+            DocumentDate = document.DocumentDate,
+            CreateTime = document.CreateTime,
+            Note = document.Note,
+            FileUrl = document.FilePathUrl
+        }).ToList();
+
+        return new PagedResult<DocumentAdminResponseDTO>
+        {
+            Items = dtoItems,
+            PageNumber = pagedResult.PageNumber,
+            PageSize = pagedResult.PageSize,
+            TotalCount = pagedResult.TotalCount
+        };
+    }
+
+    public async Task<PagedResult<DocumentResponseDTO>> GetAllModeratorAsync(DocumentQueryDTO dto, CancellationToken cancellationToken = default)
+    {
+        IQueryable<Documentt> query = _documentRepository.GetAll();
+
+        if( dto is null) 
+            throw new ArgumentNullException(nameof(dto));
+
+        if (dto.CreatedFrom.HasValue)
+            query = query.Where(x => x.CreateTime >= dto.CreatedFrom.Value);
+
+        if (dto.CreatedTo.HasValue)
+            query = query.Where(x => x.CreateTime <= dto.CreatedTo.Value);
+
+        int pageNumber = dto.PageNumber <= 0 ? 1 : dto.PageNumber;
+        int pageSize = dto.PageSize <= 0 ? 10 : dto.PageSize;
+        var pagedResult = await query.ToPagedResultAsync(pageNumber, pageSize, cancellationToken);
+
+        var dtoItems = pagedResult.Items.Select(document => new DocumentResponseDTO
+        {
+            DocumentCode = document.DocumentCode,
+            DocumentNumber = document.DocumentNumber,
+            DocumentTypeName = document.DocumentTypeName,
+            DocumentDate = document.DocumentDate,
+            Note = document.Note,
+            FileUrl = document.FilePathUrl
+        }).ToList();
+
+        return new PagedResult<DocumentResponseDTO>
+        {
+            Items = dtoItems,
+            PageNumber = pagedResult.PageNumber,
+            PageSize = pagedResult.PageSize,
+            TotalCount = pagedResult.TotalCount
+        };
+    }
+
+    public async Task<DocumentAdminResponseDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var document = await _documentRepository.GetByIdAsync(id);
+
+        if(document is null)
+            throw new KeyNotFoundException($"Document with id {id} not found.");
+
+        return new DocumentAdminResponseDTO 
+        { 
+            Id = document.Id,
+            DocumentCode = document.DocumentCode,
+            DocumentNumber = document.DocumentNumber,
+            DocumentTypeName = document.DocumentTypeName,
+            DocumentDate = document.DocumentDate,
+            CreateTime = document.CreateTime,
+            Note = document.Note,
+            FileUrl = document.FilePathUrl
+        };
+    }
+
+    public async Task RecoverAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var document = await _documentRepository.GetByIdAsync(id);
+
+        if (document is null)
+            throw new KeyNotFoundException($"Document with id {id} not found.");
+
+        if (document.IsDeleted)
+        {
+            document.IsDeleted = false;
+            document.DeleteTime = null;
+        }
+        else
+        {
+            throw new Exception($"Document with id {id} is not soft deleted, so it cannot be recovered.");
+        }
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task SoftDeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var document = await _documentRepository.GetByIdAsync(id);
+
+        if (document is null)
+            throw new KeyNotFoundException($"Document with id {id} not found.");
+
+        if (document.IsDeleted)
+        {
+            throw new Exception($"Document with id {id} is already soft deleted.");
+        }
+        else
+        {
+            document.IsDeleted = true;
+            document.DeleteTime = DateTime.UtcNow;
+        }
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task UpdateAsync(Guid id, DocumentUpdateRequestDTO documentDto, CancellationToken cancellationToken = default)
+    {
+        var document = await _documentRepository.GetByIdAsync(id);
+
+        if (document is null)
+            throw new KeyNotFoundException($"Document with id {id} not found.");
+
+   
+        document.DocumentNumber = documentDto.DocumentNumber;
+        document.DocumentDate = documentDto.DocumentDate;
+        document.Note = documentDto.Note;
+
+        if (documentDto.File != null)
+        {
+            if (await _fileService.FileExistsAsync(document.FilePathUrl))
+            {
+                await _fileService.DeleteFileAsync(document.FilePathUrl); 
+            }
+
+            var filePath = await _fileService.UploadFileAsync(documentDto.File, cancellationToken);
+            document.FilePathUrl = filePath;
+        }
+
+        if (documentDto.FileValue != null)
+        {
+            document.FieldValues = documentDto.FileValue.Select(fv => new DocumentFieldValue
+            {
+                Value = fv.Value,
+                DocumentId = fv.DocumentId,
+                DocumentFieldDefinitionId = fv.DocumentFieldDefinitionId
+            }).ToList();
+        }
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+}
