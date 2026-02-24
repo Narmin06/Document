@@ -148,8 +148,8 @@ C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\bin\Debug\n
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\bin\Debug\net8.0\AcceptanceDocuments.WebApi.deps.json
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\bin\Debug\net8.0\AcceptanceDocuments.WebApi.runtimeconfig.json
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\bin\Debug\net8.0\AcceptanceDocuments.WebApi.pdb
-C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\obj\Debug\net8.0\Acceptan.FB3CCF53.Up2Date
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\obj\Debug\net8.0\AcceptanceDocuments.WebApi.genruntimeconfig.cache
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\obj\Debug\net8.0\ref\AcceptanceDocuments.WebApi.dll
 C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\bin\Debug\net8.0\AcceptanceDocuments.WebApi.staticwebassets.runtime.json
+C:\Users\ASUS\Desktop\AcceptanceDocuments\AcceptanceDocuments.WebApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

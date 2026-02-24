@@ -16,6 +16,7 @@ public class DocumentFieldDefinitionController : ControllerBase
         _documentFieldDefinitionService = documentFieldDefinitionService;
     }
 
+
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] DocumentFieldDefinitionCreateRequestDTO documentDto, CancellationToken cancellationToken)
     {
@@ -45,6 +46,7 @@ public class DocumentFieldDefinitionController : ControllerBase
         return Ok(new { message = "Document field definition updated successfully." });
     }
 
+
     [HttpGet("admin")]
     public async Task<IActionResult> GetAllAdminAsync([FromQuery] BaseQueryDTO queryDto, CancellationToken cancellationToken)
     {
@@ -54,6 +56,7 @@ public class DocumentFieldDefinitionController : ControllerBase
         var result = await _documentFieldDefinitionService.GetAllAsync(queryDto, cancellationToken);
         return Ok(result);
     }
+
 
     [HttpGet("moderator")]
     public async Task<IActionResult> GetAllModeratorAsync([FromQuery] BaseQueryDTO queryDto, CancellationToken cancellationToken)
@@ -77,8 +80,15 @@ public class DocumentFieldDefinitionController : ControllerBase
     [HttpPatch("softdelete/{id}")]
     public async Task<IActionResult> SoftDeleteAsync(Guid id, CancellationToken cancellationToken)
     {
-        await _documentFieldDefinitionService.SoftDeleteAsync(id, cancellationToken);
-        return Ok(new { message = "Document field definition soft deleted successfully." });
+        try
+        {
+            await _documentFieldDefinitionService.SoftDeleteAsync(id, cancellationToken);
+            return Ok(new { message = "Document field definition soft deleted successfully." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
     }
 
 

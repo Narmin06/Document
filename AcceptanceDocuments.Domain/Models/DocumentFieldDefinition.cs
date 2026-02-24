@@ -8,6 +8,7 @@ public class DocumentFieldDefinition : AuditableEntity, ISoftDeletable
 {
     public string Label { get; set; } = null!; 
     public  EDocumentFieldType FieldType { get; set; }
+
     public bool IsDeleted { get; set; }
     public DateTime? DeleteTime { get; set; }
 

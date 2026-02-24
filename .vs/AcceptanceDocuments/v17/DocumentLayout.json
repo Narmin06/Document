@@ -3,19 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{70C07504-300C-42A8-860E-F6AC38F6D2E8}|AcceptanceDocuments.Business\\AcceptanceDocuments.Business.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.business\\services\\implements\\documentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70C07504-300C-42A8-860E-F6AC38F6D2E8}|AcceptanceDocuments.Business\\AcceptanceDocuments.Business.csproj|solutionrelative:acceptancedocuments.business\\services\\implements\\documentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{84D61090-4A11-4B35-874B-606172437656}|AcceptanceDocuments.Dal\\AcceptanceDocuments.Dal.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.dal\\repositories\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84D61090-4A11-4B35-874B-606172437656}|AcceptanceDocuments.Dal\\AcceptanceDocuments.Dal.csproj|solutionrelative:acceptancedocuments.dal\\repositories\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.domain\\models\\documenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|solutionrelative:acceptancedocuments.domain\\models\\documenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.domain\\models\\common\\auditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|solutionrelative:acceptancedocuments.domain\\models\\common\\auditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.domain\\models\\documentfielddefinition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|solutionrelative:acceptancedocuments.domain\\models\\documentfielddefinition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.domain\\models\\documentfieldvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|solutionrelative:acceptancedocuments.domain\\models\\documentfieldvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.domain\\models\\documentt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|solutionrelative:acceptancedocuments.domain\\models\\documentt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/DocumentDb/True/SqlTable/dbo.Documents.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.domain\\models\\documenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|solutionrelative:acceptancedocuments.domain\\models\\documenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.domain\\models\\documenttypefielddefinition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A98C991D-66F3-4133-99BA-F28901FDFA77}|AcceptanceDocuments.Domain\\AcceptanceDocuments.Domain.csproj|solutionrelative:acceptancedocuments.domain\\models\\documenttypefielddefinition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{656C2C2E-DE22-4C1D-A69B-8D1386566FC3}|AcceptanceDocuments.WebApi\\AcceptanceDocuments.WebApi.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.webapi\\controllers\\documentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{656C2C2E-DE22-4C1D-A69B-8D1386566FC3}|AcceptanceDocuments.WebApi\\AcceptanceDocuments.WebApi.csproj|solutionrelative:acceptancedocuments.webapi\\controllers\\documentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70C07504-300C-42A8-860E-F6AC38F6D2E8}|AcceptanceDocuments.Business\\AcceptanceDocuments.Business.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.business\\services\\implements\\documentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70C07504-300C-42A8-860E-F6AC38F6D2E8}|AcceptanceDocuments.Business\\AcceptanceDocuments.Business.csproj|solutionrelative:acceptancedocuments.business\\services\\implements\\documentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{656C2C2E-DE22-4C1D-A69B-8D1386566FC3}|AcceptanceDocuments.WebApi\\AcceptanceDocuments.WebApi.csproj|c:\\users\\asus\\desktop\\acceptancedocuments\\acceptancedocuments.webapi\\controllers\\documenttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{656C2C2E-DE22-4C1D-A69B-8D1386566FC3}|AcceptanceDocuments.WebApi\\AcceptanceDocuments.WebApi.csproj|solutionrelative:acceptancedocuments.webapi\\controllers\\documenttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,51 +55,123 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DocumentService.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Business\\Services\\Implements\\DocumentService.cs",
-              "RelativeDocumentMoniker": "AcceptanceDocuments.Business\\Services\\Implements\\DocumentService.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Business\\Services\\Implements\\DocumentService.cs",
-              "RelativeToolTip": "AcceptanceDocuments.Business\\Services\\Implements\\DocumentService.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAuwFkAAAAAAAAAAAAAAA==",
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Dal\\Repositories\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "AcceptanceDocuments.Dal\\Repositories\\Interfaces\\IRepository.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Dal\\Repositories\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "AcceptanceDocuments.Dal\\Repositories\\Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T10:30:10.737Z",
+              "WhenOpened": "2026-02-24T13:15:04.491Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AuditableEntity.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\Common\\AuditableEntity.cs",
+              "RelativeDocumentMoniker": "AcceptanceDocuments.Domain\\Models\\Common\\AuditableEntity.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\Common\\AuditableEntity.cs",
+              "RelativeToolTip": "AcceptanceDocuments.Domain\\Models\\Common\\AuditableEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T13:14:21.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DocumentFieldDefinition.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\DocumentFieldDefinition.cs",
+              "RelativeDocumentMoniker": "AcceptanceDocuments.Domain\\Models\\DocumentFieldDefinition.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\DocumentFieldDefinition.cs",
+              "RelativeToolTip": "AcceptanceDocuments.Domain\\Models\\DocumentFieldDefinition.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T13:14:05.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DocumentFieldValue.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\DocumentFieldValue.cs",
+              "RelativeDocumentMoniker": "AcceptanceDocuments.Domain\\Models\\DocumentFieldValue.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\DocumentFieldValue.cs",
+              "RelativeToolTip": "AcceptanceDocuments.Domain\\Models\\DocumentFieldValue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T13:13:48.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DocumentTypeFieldDefinition.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\DocumentTypeFieldDefinition.cs",
+              "RelativeDocumentMoniker": "AcceptanceDocuments.Domain\\Models\\DocumentTypeFieldDefinition.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\DocumentTypeFieldDefinition.cs",
+              "RelativeToolTip": "AcceptanceDocuments.Domain\\Models\\DocumentTypeFieldDefinition.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T13:13:01.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DocumentController.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.WebApi\\Controllers\\DocumentController.cs",
+              "RelativeDocumentMoniker": "AcceptanceDocuments.WebApi\\Controllers\\DocumentController.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.WebApi\\Controllers\\DocumentController.cs",
+              "RelativeToolTip": "AcceptanceDocuments.WebApi\\Controllers\\DocumentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T13:12:08.152Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DocumentService.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Business\\Services\\Implements\\DocumentService.cs",
+              "RelativeDocumentMoniker": "AcceptanceDocuments.Business\\Services\\Implements\\DocumentService.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Business\\Services\\Implements\\DocumentService.cs",
+              "RelativeToolTip": "AcceptanceDocuments.Business\\Services\\Implements\\DocumentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T10:30:10.737Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "DocumentType.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\DocumentType.cs",
               "RelativeDocumentMoniker": "AcceptanceDocuments.Domain\\Models\\DocumentType.cs",
               "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\DocumentType.cs",
               "RelativeToolTip": "AcceptanceDocuments.Domain\\Models\\DocumentType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T11:10:53.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T11:10:53.745Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Documentt.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\Documentt.cs",
               "RelativeDocumentMoniker": "AcceptanceDocuments.Domain\\Models\\Documentt.cs",
               "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.Domain\\Models\\Documentt.cs",
               "RelativeToolTip": "AcceptanceDocuments.Domain\\Models\\Documentt.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T10:31:06.792Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T10:31:06.792Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "dbo.Documents [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/DocumentDb/True/SqlTable/dbo.Documents.sql",
-              "ToolTip": "dbo.Documents [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-02-24T10:45:32.057Z",
-              "EditorCaption": ""
+              "DocumentIndex": 9,
+              "Title": "DocumentTypeController.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.WebApi\\Controllers\\DocumentTypeController.cs",
+              "RelativeDocumentMoniker": "AcceptanceDocuments.WebApi\\Controllers\\DocumentTypeController.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\AcceptanceDocuments\\AcceptanceDocuments.WebApi\\Controllers\\DocumentTypeController.cs",
+              "RelativeToolTip": "AcceptanceDocuments.WebApi\\Controllers\\DocumentTypeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T13:08:45.693Z"
             }
           ]
         },

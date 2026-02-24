@@ -18,6 +18,7 @@ public class DocumentService : IDocumentService
         _fileService = fileService;
     }
 
+
     public async Task CreateAsync(DocumentCreateRequestDTO documentDto, CancellationToken cancellationToken = default)
     {
         if (documentDto == null)
@@ -60,6 +61,7 @@ public class DocumentService : IDocumentService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
+
     public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var document = await _unitOfWork.Repository<Documentt>().GetByIdAsync(id);
@@ -72,12 +74,10 @@ public class DocumentService : IDocumentService
     }
 
 
-
-
     public async Task<PagedResult<DocumentAdminResponseDTO>> GetAllAsync(DocumentQueryDTO dto, CancellationToken cancellationToken = default)
     {
         IQueryable<Documentt> query = _unitOfWork.Repository<Documentt>().GetAll(includes: x => x.Include(document => document.DocumentType)
-                                                                                                     .Include(document => document.FieldValues));
+                                                                                                  .Include(document => document.FieldValues));
 
         if (dto is null)
             throw new ArgumentNullException(nameof(dto));
@@ -126,16 +126,10 @@ public class DocumentService : IDocumentService
     }
 
 
-
-
-
-
-
-
     public async Task<PagedResult<DocumentResponseDTO>> GetAllModeratorAsync(DocumentQueryDTO dto, CancellationToken cancellationToken = default)
     {
         IQueryable<Documentt> query = _unitOfWork.Repository<Documentt>().GetAll(includes: x => x.Include(document => document.DocumentType)
-                                                                                                     .Include(document => document.FieldValues), filter: x => x.IsActive == true && x.IsDeleted == false);
+                                                                                                 .Include(document => document.FieldValues), filter: x => x.IsActive == true && x.IsDeleted == false);
 
         if (dto is null)
             throw new ArgumentNullException(nameof(dto));
@@ -176,13 +170,14 @@ public class DocumentService : IDocumentService
         };
     }
 
+
     public async Task<DocumentAdminResponseDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         //var document = await _unitOfWork.Repository<Documentt>().GetByIdAsync(id);
 
         var document = await _unitOfWork.Repository<Documentt>().GetAsync(x => x.Id == id, includes: q => q.Include(d => d.DocumentType)
-                                                                                                           .Include(d => d.FieldValues)
-                                                                                                                .ThenInclude(fv => fv.DocumentFieldDefinition));
+                                                                                         .Include(d => d.FieldValues)
+                                                                                         .ThenInclude(fv => fv.DocumentFieldDefinition));
 
 
         if (document is null)
@@ -207,6 +202,7 @@ public class DocumentService : IDocumentService
         };
     }
 
+
     public async Task RecoverAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var document = await _unitOfWork.Repository<Documentt>().GetByIdAsync(id);
@@ -225,6 +221,7 @@ public class DocumentService : IDocumentService
         }
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
+
 
     public async Task SoftDeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
@@ -259,9 +256,7 @@ public class DocumentService : IDocumentService
         if (document.IsActive)
         {
             throw new Exception($"Document with id {id} is already activated.");
-
         }
-
         else
         {
             document.IsActive = true;
@@ -269,6 +264,7 @@ public class DocumentService : IDocumentService
         }
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
+
 
     public async Task DeactivateAsync(Guid id, CancellationToken cancellationToken = default)
     {
@@ -280,9 +276,7 @@ public class DocumentService : IDocumentService
         if (!document.IsActive)
         {
             throw new Exception($"Document with id {id} is already deactivated.");
-
         }
-
         else
         {
             document.IsActive = false;
@@ -324,7 +318,6 @@ public class DocumentService : IDocumentService
                 DocumentFieldDefinitionId = fv.DocumentFieldDefinitionId
             }).ToList();
         }
-
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

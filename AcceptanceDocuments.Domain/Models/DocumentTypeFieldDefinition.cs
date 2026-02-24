@@ -1,5 +1,4 @@
 ﻿using AcceptanceDocuments.Domain.Models.Common;
-
 namespace AcceptanceDocuments.Domain.Models;
 
 public class DocumentTypeFieldDefinition : BaseEntity

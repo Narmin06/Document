@@ -88,7 +88,6 @@ public class DocumentTypeController : ControllerBase
         {
             return NotFound(new { message = ex.Message });
         }
-
     }
 
 
@@ -105,5 +104,4 @@ public class DocumentTypeController : ControllerBase
             return NotFound(new { message = ex.Message });
         }
     }
-
 }

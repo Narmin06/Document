@@ -35,8 +35,9 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
         if (filter is not null)
             query = query.Where(filter);
 
-        return _dbSet.AsQueryable();
+        return query; 
     }
+
 
     public Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> filter,
                                            Func<IQueryable<TEntity>, IQueryable<TEntity>>? includes = null,

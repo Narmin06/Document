@@ -3,7 +3,6 @@ using AcceptanceDocuments.Business.Services.Interfaces;
 using AcceptanceDocuments.Dal.Data;
 using AcceptanceDocuments.Dal.Repositories.Implements;
 using AcceptanceDocuments.Dal.Repositories.Interfaces;
-using AcceptanceDocuments.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

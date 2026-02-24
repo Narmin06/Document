@@ -18,6 +18,7 @@ namespace AcceptanceDocuments.WebApi.Controllers
             _documentService = documentService;
         }
 
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromForm] DocumentCreateRequestDTO documentDto, CancellationToken cancellationToken)
         {
@@ -32,10 +33,10 @@ namespace AcceptanceDocuments.WebApi.Controllers
                 var fieldValues = JsonConvert.DeserializeObject<IEnumerable<DocumentFieldValueCreateRequestDTO>>(documentDto.FieldValueJson);
                 documentDto.FieldValues = fieldValues?.ToList();
             }
-
             await _documentService.CreateAsync(documentDto, cancellationToken);
             return Ok(new { message = "Document created successfully." });
         }
+
 
         [HttpDelete("admin/{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
@@ -61,6 +62,7 @@ namespace AcceptanceDocuments.WebApi.Controllers
             return Ok(new { message = "Document updated successfully." });
         }
 
+
         [HttpGet("admin")]
         public async Task<IActionResult> GetAllAdminAsync([FromQuery] DocumentQueryDTO documentQuery, CancellationToken cancellationToken)
         {
@@ -70,6 +72,7 @@ namespace AcceptanceDocuments.WebApi.Controllers
             var result = await _documentService.GetAllAsync(documentQuery, cancellationToken);
             return Ok(result);
         }
+
 
         [HttpGet("moderator")]
         public async Task<IActionResult> GetAllAsync([FromQuery] DocumentQueryDTO documentQuery, CancellationToken cancellationToken)
@@ -81,12 +84,14 @@ namespace AcceptanceDocuments.WebApi.Controllers
             return Ok(result);
         }
 
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             var document = await _documentService.GetByIdAsync(id, cancellationToken);
             return Ok(document);
         }
+
 
         [HttpPatch("softdelete/{id}")]
         public async Task<IActionResult> SoftDeleteAsync(Guid id, CancellationToken cancellationToken)
@@ -102,6 +107,7 @@ namespace AcceptanceDocuments.WebApi.Controllers
             }
         }
 
+
         [HttpPatch("recover/{id}")]
         public async Task<IActionResult> RecoverAsync(Guid id, CancellationToken cancellationToken)
         {
@@ -116,6 +122,7 @@ namespace AcceptanceDocuments.WebApi.Controllers
             }
         }
 
+
         [HttpPatch("activate/{id}")]
         public async Task<IActionResult> ActivateAsync(Guid id, CancellationToken cancellationToken)
         {
@@ -129,6 +136,7 @@ namespace AcceptanceDocuments.WebApi.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
 
         [HttpPatch("deactivate/{id}")]
         public async Task<IActionResult> DeactivateAsync(Guid id, CancellationToken cancellationToken)
