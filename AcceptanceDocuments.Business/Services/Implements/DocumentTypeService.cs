@@ -2,18 +2,15 @@
 using AcceptanceDocuments.Business.DTOs.DocumentTypeDTO;
 using AcceptanceDocuments.Business.Services.Interfaces;
 using AcceptanceDocuments.Dal.Data;
-using AcceptanceDocuments.Dal.Repositories.Interfaces;
 using AcceptanceDocuments.Domain.Models;
 namespace AcceptanceDocuments.Business.Services.Implements;
 
 public class DocumentTypeService : IDocumentTypeService
 {
-    private readonly IDocumentTypeRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public DocumentTypeService(IDocumentTypeRepository repository, IUnitOfWork unitOfWork)
+    public DocumentTypeService(IUnitOfWork unitOfWork)
     {
-        _repository = repository;
         _unitOfWork = unitOfWork;
     }
 
@@ -27,24 +24,24 @@ public class DocumentTypeService : IDocumentTypeService
             Name = documentTypeDto.Name
         };
 
-        _repository.Create(documentType);
+        _unitOfWork.Repository<DocumentType>().Create(documentType);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var documentType = await _repository.GetByIdAsync(id);
+        var documentType = await _unitOfWork.Repository<DocumentType>().GetByIdAsync(id);
 
         if (documentType is null)
             throw new KeyNotFoundException($"DocumentType with id {id} not found.");
 
-        _repository.Delete(documentType);
+        _unitOfWork.Repository<DocumentType>().Delete(documentType);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<PagedResult<DocumentTypeAdminResponseDTO>> GetAllAsync(DocumentTypeQueryDTO dto, CancellationToken cancellationToken = default)
     {
-        IQueryable<DocumentType> query = _repository.GetAll();
+        IQueryable<DocumentType> query = _unitOfWork.Repository<DocumentType>().GetAll();
 
         if( dto is null) 
              throw new ArgumentNullException(nameof(dto));    
@@ -81,7 +78,7 @@ public class DocumentTypeService : IDocumentTypeService
 
     public async Task<PagedResult<DocumentTypeResponseDTO>> GetAllModeratorAsync(DocumentTypeQueryDTO dto, CancellationToken cancellationToken = default)
     {
-        IQueryable<DocumentType> query = _repository.GetAll(x => !x.IsDeleted);
+        IQueryable<DocumentType> query = _unitOfWork.Repository<DocumentType>().GetAll(x => !x.IsDeleted);
 
         if( dto is null) 
                 throw new ArgumentNullException(nameof(dto));
@@ -111,7 +108,7 @@ public class DocumentTypeService : IDocumentTypeService
 
     public async Task<DocumentTypeResponseDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var documentType = await _repository.GetByIdAsync(id, cancellationToken);
+        var documentType = await _unitOfWork.Repository<DocumentType>().GetByIdAsync(id, cancellationToken);
 
         if( documentType is null)
             throw new ArgumentNullException(nameof(documentType));
@@ -124,7 +121,7 @@ public class DocumentTypeService : IDocumentTypeService
 
     public async Task RecoverAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var documentType = await _repository.GetByIdAsync(id);
+        var documentType = await _unitOfWork.Repository<DocumentType>().GetByIdAsync(id);
 
         if(documentType is null)
             throw new KeyNotFoundException($"DocumentType with id {id} not found.");
@@ -143,7 +140,7 @@ public class DocumentTypeService : IDocumentTypeService
 
     public async Task SoftDeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var documentType = await _repository.GetByIdAsync(id);
+        var documentType = await _unitOfWork.Repository<DocumentType>().GetByIdAsync(id);
 
         if(documentType is null)
             throw new KeyNotFoundException($"DocumentType with id {id} not found.");
@@ -162,14 +159,14 @@ public class DocumentTypeService : IDocumentTypeService
 
     public async Task UpdateAsync(Guid id, DocumentTypeUpdateRequestDTO documentTypeDto, CancellationToken cancellationToken = default)
     {
-       var documentType = await _repository.GetByIdAsync(id);
+       var documentType = await _unitOfWork.Repository<DocumentType>().GetByIdAsync(id);
 
         if (documentType is null)
             throw new KeyNotFoundException($"DocumentType with id {id} not found.");
 
         documentType.Name = documentTypeDto.Name;
 
-        _repository.Update(documentType);
+        _unitOfWork.Repository<DocumentType>().Update(documentType);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

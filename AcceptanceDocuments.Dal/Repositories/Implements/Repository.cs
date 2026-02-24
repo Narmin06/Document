@@ -28,19 +28,27 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
                                      bool tracking = false)
     {
         IQueryable<TEntity> query = tracking ? _dbSet : _dbSet.AsNoTracking();
-        
-        if(filter != null)
-            query = query.Where(filter);
 
-        if(includes != null)
+        if (includes is not null)
             query = includes(query);
+
+        if (filter is not null)
+            query = query.Where(filter);
 
         return _dbSet.AsQueryable();
     }
 
-    public async Task<TEntity?> GetByIdAsync(Guid id,CancellationToken cancellationToken)
+    public Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> filter,
+                                           Func<IQueryable<TEntity>, IQueryable<TEntity>>? includes = null,
+                                           bool tracking = false,
+                                           CancellationToken ct = default)
+
+      => GetAll(filter, includes, tracking).FirstOrDefaultAsync(ct);
+
+
+    public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await _dbSet.FindAsync(id,cancellationToken);
+        return await _dbSet.FindAsync(id, cancellationToken);
     }
 
     public async Task<int> SaveChangeAsync()

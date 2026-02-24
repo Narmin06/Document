@@ -1,4 +1,6 @@
-﻿namespace AcceptanceDocuments.Business.DTOs.DocumentDTO;
+﻿using AcceptanceDocuments.Business.DTOs.DocumentFieldValueDTO;
+
+namespace AcceptanceDocuments.Business.DTOs.DocumentDTO;
 
 public class DocumentResponseDTO
 {
@@ -9,4 +11,5 @@ public class DocumentResponseDTO
     public string Note { get; set; } = string.Empty;
     public string FileUrl { get; set; } = string.Empty;
     public DateTime RegsitrationDate { get; set; }
+    public IEnumerable<DocumentFieldValueResponseDTO> FieldValues { get; set; } = new List<DocumentFieldValueResponseDTO>();
 }

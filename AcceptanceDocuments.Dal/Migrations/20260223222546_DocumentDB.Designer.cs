@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcceptanceDocuments.Dal.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260223154713_Initial")]
-    partial class Initial
+    [Migration("20260223222546_DocumentDB")]
+    partial class DocumentDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,10 +186,6 @@ namespace AcceptanceDocuments.Dal.Migrations
 
                     b.Property<Guid>("DocumentTypeId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DocumentTypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FilePathUrl")
                         .IsRequired()

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AcceptanceDocuments.Dal.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class DocumentDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,7 +61,6 @@ namespace AcceptanceDocuments.Dal.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DocumentTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DocumentTypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),

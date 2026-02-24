@@ -3,21 +3,15 @@ using AcceptanceDocuments.Business.DTOs.Common;
 using AcceptanceDocuments.Business.DTOs.DocumentFieldDefinitionDTO;
 using AcceptanceDocuments.Business.Services.Interfaces;
 using AcceptanceDocuments.Dal.Data;
-using AcceptanceDocuments.Dal.Repositories.Interfaces;
 using AcceptanceDocuments.Domain.Models;
 namespace AcceptanceDocuments.Business.Services.Implements;
 
 public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
 {
-    private readonly IDocumentFieldDefinitionRepository _documentRepository;
-    private readonly IDocumentTypeFieldDefinitionRepository _documentTypeFieldDefinitionRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public DocumentFieldDefinitionService(IDocumentFieldDefinitionRepository repository, IDocumentTypeFieldDefinitionRepository documentTypeFieldDefinitionRepository,
-             IUnitOfWork unitOfWork)
+    public DocumentFieldDefinitionService (IUnitOfWork unitOfWork)
     {
-        _documentRepository = repository;
-        _documentTypeFieldDefinitionRepository = documentTypeFieldDefinitionRepository;
         _unitOfWork = unitOfWork;
     }
 
@@ -33,7 +27,7 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
             IsRequired = documentDto.IsRequired
         };
 
-        _documentRepository.Create(documentFieldDefinition);
+        _unitOfWork.Repository<DocumentFieldDefinition>().Create(documentFieldDefinition);
 
         if (documentDto.DocumentTypeId.HasValue)
         {
@@ -44,7 +38,7 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
                 IsRequired = documentDto.IsRequired
             };
 
-            _documentTypeFieldDefinitionRepository.Create(documentTypeFieldDefinition);
+            _unitOfWork.Repository<DocumentTypeFieldDefinition>().Create(documentTypeFieldDefinition);
         }
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
@@ -52,18 +46,18 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
 
     public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var documentFieldDefinition = await _documentRepository.GetByIdAsync(id);
+        var documentFieldDefinition = await _unitOfWork.Repository<DocumentFieldDefinition>().GetByIdAsync(id);
 
         if(documentFieldDefinition is null)
             throw new KeyNotFoundException($"DocumentFieldDefinition with id {id} not found.");
 
-        _documentRepository.Delete(documentFieldDefinition);
+        _unitOfWork.Repository<DocumentFieldDefinition>().Delete(documentFieldDefinition);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<PagedResult<DocumentFieldDefinitionAdminResponseDTO>> GetAllAsync(BaseQueryDTO dto, CancellationToken cancellationToken = default)
     {
-        IQueryable<DocumentFieldDefinition> query = _documentRepository.GetAll();
+        IQueryable<DocumentFieldDefinition> query = _unitOfWork.Repository<DocumentFieldDefinition>().GetAll();
 
         if (dto is null)
             throw new ArgumentNullException(nameof(dto));
@@ -94,7 +88,7 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
 
     public async Task<PagedResult<DocumentFieldDefinitionResponseDTO>> GetAllModeratorAsync(BaseQueryDTO dto, CancellationToken cancellationToken = default)
     {
-        IQueryable<DocumentFieldDefinition> query = _documentRepository.GetAll();
+        IQueryable<DocumentFieldDefinition> query = _unitOfWork.Repository<DocumentFieldDefinition>().GetAll();
 
         if(dto is null)
             throw new ArgumentNullException(nameof(dto));
@@ -123,7 +117,7 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
 
     public async Task<DocumentFieldDefinitionResponseDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var documentFieldDefinition = await _documentRepository.GetByIdAsync(id);
+        var documentFieldDefinition = await _unitOfWork.Repository<DocumentFieldDefinition>().GetByIdAsync(id);
 
         if (documentFieldDefinition is null)
             throw new KeyNotFoundException($"DocumentFieldDefinition with id {id} not found.");
@@ -138,7 +132,7 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
 
     public async Task RecoverAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var documentFieldDefinition = await _documentRepository.GetByIdAsync(id);
+        var documentFieldDefinition = await _unitOfWork.Repository<DocumentFieldDefinition>().GetByIdAsync(id);
 
         if(documentFieldDefinition is null)
             throw new KeyNotFoundException($"DocumentFieldDefinition with id {id} not found.");
@@ -157,7 +151,7 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
 
     public async Task SoftDeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var documentFieldDefinition = await _documentRepository.GetByIdAsync(id);
+        var documentFieldDefinition = await _unitOfWork.Repository<DocumentFieldDefinition>().GetByIdAsync(id);
 
         if(documentFieldDefinition is null)
             throw new KeyNotFoundException($"DocumentFieldDefinition with id {id} not found.");
@@ -176,7 +170,7 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
 
     public async Task UpdateAsync(Guid id, DocumentFieldDefinitionUpdateRequestDTO documentDto, CancellationToken cancellationToken = default)
     {
-        var documentFieldDefinition = await _documentRepository.GetByIdAsync(id);
+        var documentFieldDefinition = await _unitOfWork.Repository<DocumentFieldDefinition>().GetByIdAsync(id);
 
         if(documentFieldDefinition is null)
             throw new KeyNotFoundException($"DocumentFieldDefinition with id {id} not found."); 
@@ -185,7 +179,7 @@ public class DocumentFieldDefinitionService : IDocumentFieldDefinitionService
         documentFieldDefinition.FieldType = documentDto.FieldType;
         documentFieldDefinition.IsRequired = documentDto.IsRequired;
 
-        _documentRepository.Update(documentFieldDefinition);
+        _unitOfWork.Repository<DocumentFieldDefinition>().Update(documentFieldDefinition);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

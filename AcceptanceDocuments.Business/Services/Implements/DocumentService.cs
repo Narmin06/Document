@@ -32,7 +32,7 @@ public class DocumentService : IDocumentService
         var document = new Documentt
         {
             DocumentCode = Guid.NewGuid().ToString(),
-            DocumentNumber = documentDto.DocumentNumber,
+            DocumentNumber = documentDto.DocumentNumber ?? "",
             DocumentTypeId = documentDto.DocumentTypeId,
             DocumentDate = documentDto.DocumentDate,
             CreateTime = DateTime.UtcNow,
@@ -71,14 +71,16 @@ public class DocumentService : IDocumentService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
+
+
+
     public async Task<PagedResult<DocumentAdminResponseDTO>> GetAllAsync(DocumentQueryDTO dto, CancellationToken cancellationToken = default)
     {
         IQueryable<Documentt> query = _unitOfWork.Repository<Documentt>().GetAll(includes: x => x.Include(document => document.DocumentType)
-                                                                                                 .Include(document => document.FieldValues));
+                                                                                                     .Include(document => document.FieldValues));
 
         if (dto is null)
             throw new ArgumentNullException(nameof(dto));
-
 
         if (dto.CreatedFrom.HasValue)
             query = query.Where(x => x.CreateTime >= dto.CreatedFrom.Value);
@@ -88,12 +90,6 @@ public class DocumentService : IDocumentService
 
         if (!string.IsNullOrEmpty(dto.Search))
             query = query.Where(x => x.DocumentNumber.Contains(dto.Search));
-
-        if (dto.CreatedFrom.HasValue)
-            query = query.Where(x => x.CreateTime >= dto.CreatedFrom.Value);
-
-        if (dto.CreatedTo.HasValue)
-            query = query.Where(x => x.CreateTime <= dto.CreatedTo.Value);
 
         int pageNumber = dto.PageNumber <= 0 ? 1 : dto.PageNumber;
         int pageSize = dto.PageSize <= 0 ? 10 : dto.PageSize;
@@ -105,9 +101,11 @@ public class DocumentService : IDocumentService
             Id = document.Id,
             DocumentCode = document.DocumentCode,
             DocumentNumber = document.DocumentNumber,
-            DocumentTypeName = document.DocumentType.Name ?? "",
+            DocumentTypeName = document.DocumentType?.Name ?? string.Empty,
             DocumentDate = document.DocumentDate,
             CreateTime = document.CreateTime,
+            IsActive = document.IsActive,
+            IsDeleted = document.IsDeleted,
             Note = document.Note ?? "",
             FileUrl = document.FilePathUrl,
             FieldValues = document.FieldValues?.Select(fv => new DocumentFieldValueResponseDTO
@@ -115,7 +113,7 @@ public class DocumentService : IDocumentService
                 DocumentFieldDefinitionId = fv.DocumentFieldDefinitionId,
                 FieldDefinitionName = fv.DocumentFieldDefinition?.Label ?? string.Empty,
                 Value = fv.Value ?? string.Empty
-            }) ?? new List<DocumentFieldValueResponseDTO>() // null varsa boş list döndər
+            }).ToList() ?? new List<DocumentFieldValueResponseDTO>()
         }).ToList();
 
         return new PagedResult<DocumentAdminResponseDTO>
@@ -127,9 +125,17 @@ public class DocumentService : IDocumentService
         };
     }
 
+
+
+
+
+
+
+
     public async Task<PagedResult<DocumentResponseDTO>> GetAllModeratorAsync(DocumentQueryDTO dto, CancellationToken cancellationToken = default)
     {
-        IQueryable<Documentt> query = _unitOfWork.Repository<Documentt>().GetAll();
+        IQueryable<Documentt> query = _unitOfWork.Repository<Documentt>().GetAll(includes: x => x.Include(document => document.DocumentType)
+                                                                                                     .Include(document => document.FieldValues), filter: x => x.IsActive == true && x.IsDeleted == false);
 
         if (dto is null)
             throw new ArgumentNullException(nameof(dto));
@@ -148,10 +154,17 @@ public class DocumentService : IDocumentService
         {
             DocumentCode = document.DocumentCode,
             DocumentNumber = document.DocumentNumber,
-            DocumentTypeName = document.DocumentTypeName,
+            DocumentTypeName = document.DocumentType?.Name ?? string.Empty,
             DocumentDate = document.DocumentDate,
-            Note = document.Note,
-            FileUrl = document.FilePathUrl
+            RegsitrationDate = document.CreateTime,
+            Note = document.Note ?? "",
+            FileUrl = document.FilePathUrl,
+            FieldValues = document.FieldValues?.Select(fv => new DocumentFieldValueResponseDTO
+            {
+                DocumentFieldDefinitionId = fv.DocumentFieldDefinitionId,
+                FieldDefinitionName = fv.DocumentFieldDefinition?.Label ?? string.Empty,
+                Value = fv.Value ?? string.Empty
+            }).ToList() ?? new List<DocumentFieldValueResponseDTO>()
         }).ToList();
 
         return new PagedResult<DocumentResponseDTO>
@@ -165,7 +178,12 @@ public class DocumentService : IDocumentService
 
     public async Task<DocumentAdminResponseDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var document = await _unitOfWork.Repository<Documentt>().GetByIdAsync(id);
+        //var document = await _unitOfWork.Repository<Documentt>().GetByIdAsync(id);
+
+        var document = await _unitOfWork.Repository<Documentt>().GetAsync(x => x.Id == id, includes: q => q.Include(d => d.DocumentType)
+                                                                                                           .Include(d => d.FieldValues)
+                                                                                                                .ThenInclude(fv => fv.DocumentFieldDefinition));
+
 
         if (document is null)
             throw new KeyNotFoundException($"Document with id {id} not found.");
@@ -175,11 +193,17 @@ public class DocumentService : IDocumentService
             Id = document.Id,
             DocumentCode = document.DocumentCode,
             DocumentNumber = document.DocumentNumber,
-            DocumentTypeName = document.DocumentTypeName,
+            DocumentTypeName = document.DocumentType?.Name ?? "",
             DocumentDate = document.DocumentDate,
             CreateTime = document.CreateTime,
-            Note = document.Note,
-            FileUrl = document.FilePathUrl
+            Note = document.Note ?? "",
+            FileUrl = document.FilePathUrl,
+            FieldValues = document.FieldValues?.Select(fv => new DocumentFieldValueResponseDTO
+            {
+                DocumentFieldDefinitionId = fv.DocumentFieldDefinitionId,
+                FieldDefinitionName = fv.DocumentFieldDefinition?.Label ?? string.Empty,
+                Value = fv.Value ?? string.Empty
+            }) ?? new List<DocumentFieldValueResponseDTO>()
         };
     }
 
@@ -216,10 +240,57 @@ public class DocumentService : IDocumentService
         else
         {
             document.IsDeleted = true;
+            document.IsActive = false;
             document.DeleteTime = DateTime.UtcNow;
         }
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task ActivateAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var document = await _unitOfWork.Repository<Documentt>().GetByIdAsync(id);
+
+        if (document is null)
+            throw new KeyNotFoundException($"Document with id {id} not found.");
+
+        if (document.IsDeleted)
+            throw new Exception($"Firstful Recover Document with id {id}.");
+
+        if (document.IsActive)
+        {
+            throw new Exception($"Document with id {id} is already activated.");
+
+        }
+
+        else
+        {
+            document.IsActive = true;
+            document.UpdateTime = DateTime.UtcNow;
+        }
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task DeactivateAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var document = await _unitOfWork.Repository<Documentt>().GetByIdAsync(id);
+
+        if (document is null)
+            throw new KeyNotFoundException($"Document with id {id} not found.");
+
+        if (!document.IsActive)
+        {
+            throw new Exception($"Document with id {id} is already deactivated.");
+
+        }
+
+        else
+        {
+            document.IsActive = false;
+            document.UpdateTime = DateTime.UtcNow;
+        }
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
 
     public async Task UpdateAsync(Guid id, DocumentUpdateRequestDTO documentDto, CancellationToken cancellationToken = default)
     {
@@ -229,7 +300,7 @@ public class DocumentService : IDocumentService
             throw new KeyNotFoundException($"Document with id {id} not found.");
 
 
-        document.DocumentNumber = documentDto.DocumentNumber;
+        document.DocumentNumber = documentDto.DocumentNumber ?? "";
         document.DocumentDate = documentDto.DocumentDate;
         document.Note = documentDto.Note;
 

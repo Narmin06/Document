@@ -12,6 +12,8 @@ public interface IDocumentService
     Task UpdateAsync(Guid id, DocumentUpdateRequestDTO documentDto, CancellationToken cancellationToken = default!);
     Task SoftDeleteAsync(Guid id, CancellationToken cancellationToken = default!);
     Task RecoverAsync(Guid id, CancellationToken cancellationToken = default!);
+    Task ActivateAsync(Guid id, CancellationToken cancellationToken = default!);
+    Task DeactivateAsync(Guid id, CancellationToken cancellationToken = default!);
     Task DeleteAsync(Guid id, CancellationToken cancellationToken = default!);
 }
 

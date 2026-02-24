@@ -184,10 +184,6 @@ namespace AcceptanceDocuments.Dal.Migrations
                     b.Property<Guid>("DocumentTypeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DocumentTypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FilePathUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

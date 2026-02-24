@@ -81,7 +81,7 @@
         }
       }
     },
-    "/api/Document/{id}": {
+    "/api/Document/admin/{id}": {
       "delete": {
         "tags": [
           "Document"
@@ -102,7 +102,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Document/{id}": {
       "put": {
         "tags": [
           "Document"
@@ -120,19 +122,57 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/DocumentUpdateRequestDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DocumentUpdateRequestDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/DocumentUpdateRequestDTO"
+                "required": [
+                  "File"
+                ],
+                "type": "object",
+                "properties": {
+                  "DocumentNumber": {
+                    "type": "string"
+                  },
+                  "DocumentDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Note": {
+                    "type": "string"
+                  },
+                  "File": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "FieldValueJson": {
+                    "type": "string"
+                  },
+                  "FieldValues": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/DocumentFieldValueCreateRequestDTO"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "DocumentNumber": {
+                  "style": "form"
+                },
+                "DocumentDate": {
+                  "style": "form"
+                },
+                "Note": {
+                  "style": "form"
+                },
+                "File": {
+                  "style": "form"
+                },
+                "FieldValueJson": {
+                  "style": "form"
+                },
+                "FieldValues": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -288,7 +328,7 @@
       }
     },
     "/api/Document/softdelete/{id}": {
-      "put": {
+      "patch": {
         "tags": [
           "Document"
         ],
@@ -311,7 +351,53 @@
       }
     },
     "/api/Document/recover/{id}": {
-      "put": {
+      "patch": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Document/activate/{id}": {
+      "patch": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Document/deactivate/{id}": {
+      "patch": {
         "tags": [
           "Document"
         ],
@@ -916,43 +1002,6 @@
         "properties": {
           "name": {
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DocumentUpdateRequestDTO": {
-        "required": [
-          "file"
-        ],
-        "type": "object",
-        "properties": {
-          "documentNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "documentDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "note": {
-            "type": "string",
-            "nullable": true
-          },
-          "file": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true
-          },
-          "fieldValueJson": {
-            "type": "string",
-            "nullable": true
-          },
-          "fieldValues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DocumentFieldValueCreateRequestDTO"
-            },
             "nullable": true
           }
         },

@@ -4,7 +4,7 @@ namespace AcceptanceDocuments.Domain.Models;
 
 public class DocumentType :AuditableEntity,ISoftDeletable
 {
-    public string Name { get; set; } = null!; 
+    public string Name { get; set; } = string.Empty; 
   
     public ICollection<DocumentTypeFieldDefinition> DocumentTypeFieldDefinitions { get; set; } = new List<DocumentTypeFieldDefinition>();
     public ICollection<Documentt> Documents { get; set; } = new List<Documentt>();
