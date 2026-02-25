@@ -31,8 +31,15 @@ public class DocumentFieldDefinitionController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
-        await _documentFieldDefinitionService.DeleteAsync(id, cancellationToken);
-        return Ok(new { message = "Document field definition deleted successfully." });
+        try
+        {
+            await _documentFieldDefinitionService.DeleteAsync(id, cancellationToken);
+            return Ok(new { message = "Document field definition deleted successfully." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
     }
 
 

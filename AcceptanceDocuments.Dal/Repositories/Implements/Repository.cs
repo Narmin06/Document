@@ -51,10 +51,5 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
     {
         return await _dbSet.FindAsync(id, cancellationToken);
     }
-
-    public async Task<int> SaveChangeAsync()
-    {
-        return await _context.SaveChangesAsync();
-    }
 }
 

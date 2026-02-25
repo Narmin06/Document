@@ -41,8 +41,15 @@ namespace AcceptanceDocuments.WebApi.Controllers
         [HttpDelete("admin/{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
-            await _documentService.DeleteAsync(id, cancellationToken);
-            return Ok(new { message = "Document deleted successfully." });
+            try
+            {
+                await _documentService.DeleteAsync(id, cancellationToken);
+                return Ok(new { message = "Document deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
 

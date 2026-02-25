@@ -30,8 +30,15 @@ public class DocumentTypeController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        await _documentTypeService.DeleteAsync(id, cancellationToken);
-        return Ok(new { message = "Document Type deleted successfully." });
+        try
+        {
+            await _documentTypeService.DeleteAsync(id, cancellationToken);
+            return Ok(new { message = "Document Type deleted successfully." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
     }
 
 
