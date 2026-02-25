@@ -1,5 +1,4 @@
 ﻿using AcceptanceDocuments.Business.DTOs.DocumentFieldValueDTO;
-using AcceptanceDocuments.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 
 namespace AcceptanceDocuments.Business.DTOs.DocumentDTO
@@ -9,7 +8,7 @@ namespace AcceptanceDocuments.Business.DTOs.DocumentDTO
         public string? DocumentNumber { get; set; }
         public DateTime DocumentDate { get; set; }
         public string? Note { get; set; }
-        public required IFormFile File { get; set; }
+        public IFormFile? File { get; set; }
         public string? FieldValueJson { get; set; }
         public IEnumerable<DocumentFieldValueCreateRequestDTO>? FieldValues { get; set; }
     }

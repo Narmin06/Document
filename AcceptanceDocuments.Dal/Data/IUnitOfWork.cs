@@ -1,5 +1,4 @@
 ﻿using AcceptanceDocuments.Dal.Repositories.Interfaces;
-using AcceptanceDocuments.Domain.Models;
 using AcceptanceDocuments.Domain.Models.Common;
 namespace AcceptanceDocuments.Dal.Data;
 
