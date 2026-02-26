@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AcceptanceDocuments.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c67ba615d69cb16fa6a93ea54f47ddcd774cb770")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d917e5e7fbb76c0d7a52fc7c0f44bcf0ab755061")]
 [assembly: System.Reflection.AssemblyProductAttribute("AcceptanceDocuments.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AcceptanceDocuments.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

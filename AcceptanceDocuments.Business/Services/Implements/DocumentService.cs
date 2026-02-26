@@ -50,14 +50,12 @@ public class DocumentService : IDocumentService
                 var documentFieldValue = new DocumentFieldValue
                 {
                     Value = fieldValue.Value,
-                    DocumentId = document.Id,
                     DocumentFieldDefinitionId = fieldValue.DocumentFieldDefinitionId
                 };
 
                 _unitOfWork.Repository<DocumentFieldValue>().Create(documentFieldValue);
             }
         }
-
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
@@ -77,7 +75,8 @@ public class DocumentService : IDocumentService
     public async Task<PagedResult<DocumentAdminResponseDTO>> GetAllAsync(DocumentQueryDTO dto, CancellationToken cancellationToken = default)
     {
         IQueryable<Documentt> query = _unitOfWork.Repository<Documentt>().GetAll(includes: x => x.Include(document => document.DocumentType)
-                                                                                                  .Include(document => document.FieldValues));
+                                                                                                 .Include(document => document.FieldValues)
+                                                                                                 .ThenInclude(fv => fv.DocumentFieldDefinition));
 
         if (dto is null)
             throw new ArgumentNullException(nameof(dto));
@@ -129,7 +128,8 @@ public class DocumentService : IDocumentService
     public async Task<PagedResult<DocumentResponseDTO>> GetAllModeratorAsync(DocumentQueryDTO dto, CancellationToken cancellationToken = default)
     {
         IQueryable<Documentt> query = _unitOfWork.Repository<Documentt>().GetAll(includes: x => x.Include(document => document.DocumentType)
-                                                                                                 .Include(document => document.FieldValues), filter: x => x.IsActive == true && x.IsDeleted == false);
+                                                                                                 .Include(document => document.FieldValues)
+                                                                                                 .ThenInclude(fv => fv.DocumentFieldDefinition), filter: x => x.IsActive == true && x.IsDeleted == false);
 
         if (dto is null)
             throw new ArgumentNullException(nameof(dto));
